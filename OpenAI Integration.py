@@ -1,15 +1,15 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, render_template
 import requests
 import json
 import openai
-from Hub import hubmain
+
 
 '''
 Before you run it is important to set up ngrok and paste the url into uneeq
 '''
 
 # OpenAI secret Key
-openai.api_key = hubmain.OAI_PwC
+openai.api_key = "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"
 
 MODEL = 'gpt-3.5-turbo'
 
@@ -22,7 +22,9 @@ def openAI(prompt, max_tokens = 20):
     completion = openai.ChatCompletion.create(
         model="gpt-3.5-turbo",
         messages=[
-            {"role": "system", "content": "You are a helpful assistant and have to answer as fast and concisely as possible within a few sentences."},
+            {"role": "system", "content": "You are Fatima an AI representative of Mohammad bin Rashid's Center for Government Innovation, "
+                                          "specializing in the field of AI advancements and its applications in Dubai. Provide concise responses "
+                                          "limited to a few sentences, focusing solely on topics related to AI and the UAE."},
             {"role": "user", "content": prompt}
         ]
     )
@@ -90,7 +92,13 @@ def receive_data():
     }
 '''
 
+@app.route('/demo')
+def index():
+    return render_template("index.html")
 
+@app.route('/demotest')
+def indexed():
+    return render_template("index1.txt")
 
 
 

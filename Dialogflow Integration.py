@@ -1,7 +1,6 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, render_template
 import requests
 import openai
-from Hub import hubmain
 import time
 
 '''
@@ -10,7 +9,7 @@ googledialogflow es fulfuilment the present code doesn't provide a voice respons
 '''
 
 # OpenAI secret Key
-openai.api_key = hubmain.OAI_PwC
+openai.api_key = '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'
 
 MODEL = 'gpt-3.5-turbo'
 
@@ -66,7 +65,9 @@ def receive_data():
 
     return jsonify(respons)
 
-
+@app.route('/demo')
+def index():
+    return render_template("index.html")
 
 
 if __name__ == '__main__':

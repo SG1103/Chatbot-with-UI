@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flask Website Test</title>
+    <style>
+        
+        #uneeqContainedLayout {
+            position: relative;
+            z-index: 0;
+        }
+
+        .ai-questions-prompt {
+            position: fixed;
+            top: 40%;
+            right: 30px;
+            z-index: 1000;
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+            font-family: Helvetica, Arial, sans-serif;
+            width: 300px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .ai-questions-prompt h2 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .ai-questions-prompt ul {
+            list-style-type: disc;
+            padding-left: 20px;
+        }
+
+        .ai-questions-prompt li {
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Prompt for AI questions -->
+    <div class="ai-questions-prompt">
+        <h2>Not sure what to ask?</h2>
+        <p>Here are some ideas to get you started:</p>
+        <ul>
+            <li>What is Generative AI?</li>
+            <li>What is the Museum of The Future?</li>
+            <li>Tell me about innovation in UAE</li>
+        </ul>
+    </div>
+
+    <script>
+        window.uneeqInteractionsOptions = {
+            personaShareId: "7dbbb234-b078-4282-90ce-6690df4e5447",
+            layoutMode: 'fullScreen',
+            showUserInputInterface: true,
+            displayCallToAction: true,
+            enableMicrophone: true,
+            enableTransparentBackground: false
+        }
+    </script>
+    <script src="https://hosted.us.uneeq.io/interactions/v1/deploy"></script>
+</body>
+</html>
