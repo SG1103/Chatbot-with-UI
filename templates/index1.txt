@@ -5,7 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Flask Website Test</title>
     <style>
-        
+        body {
+            background-image: url('/image');
+            background-size: cover;
+            background-repeat: no-repeat;
+            height: 100vh;
+            margin: 0;
+        }
         #uneeqContainedLayout {
             position: relative;
             z-index: 0;
@@ -59,7 +65,8 @@
             showUserInputInterface: true,
             displayCallToAction: true,
             enableMicrophone: true,
-            enableTransparentBackground: false
+            enableTransparentBackground: true,
+            textInputPlaceholder: "Press on the button to speak..."
         }
     </script>
     <script src="https://hosted.us.uneeq.io/interactions/v1/deploy"></script>
