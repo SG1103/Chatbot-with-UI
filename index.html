@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Digital Human Demo</title>
+    <script>
+        window.uneeqInteractionsOptions = {
+          personaShareId: "7dbbb234-b078-4282-90ce-6690df4e5447",
+          layoutMode: 'fullScreen',
+          showUserInputInterface: true,
+          customData: {
+            "myCustomKey": "myCustomValue"
+          }
+          displayCallToAction: true,
+          enableMicrophone: true,
+          languageStrings: {
+            "ja": {
+                "callToActionText": "やあ！会話を始めるにはここをクリックしてください。",
+                "textInputPlaceholder": "ここに入力..."
+            },
+            "de-DE": {
+                "callToActionText": "Hi! Klicken Sie hier, um ein Gespräch zu beginnen.",
+                "textInputPlaceholder": "Geben Sie hier ein ..."
+            },
+            "default": {
+                "callToActionText": "Hi! Click here to start a conversation.",
+                "textInputPlaceholder": "Type here..."
+            }
+          }
+        }
+    </script>
+    <script src="https://hosted.us.uneeq.io/interactions/v1/deploy"></script>
+  </head>
+  <body>
+    <main class="flex-container">
+        Digital Humans!
+    </main>
+  </body>
+</html>
