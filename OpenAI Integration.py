@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, render_template,send_from_directory
 import requests
 import json
 import openai
@@ -9,7 +9,7 @@ Before you run it is important to set up ngrok and paste the url into uneeq
 '''
 
 # OpenAI secret Key
-openai.api_key = hubmain.OAI_PwC
+openai.api_key = hubmain.OAI
 
 MODEL = 'gpt-3.5-turbo'
 
@@ -22,7 +22,9 @@ def openAI(prompt, max_tokens = 20):
     completion = openai.ChatCompletion.create(
         model="gpt-3.5-turbo",
         messages=[
-            {"role": "system", "content": "You are a helpful assistant and have to answer as fast and concisely as possible within a few sentences."},
+            {"role": "system", "content": "You are Fatima an AI representative, "
+                                          "specializing in the field of AI advancements and its applications in Dubai. Provide concise responses "
+                                          "limited to a few sentences, focusing solely on topics related to AI and the UAE."},
             {"role": "user", "content": prompt}
         ]
     )
@@ -30,6 +32,14 @@ def openAI(prompt, max_tokens = 20):
     response = completion.choices[0].message.content
 
     return response
+
+def check_for_english(text):
+
+    for char in text:
+        if '\u0600' <= char <= '\u06FF':
+            return True
+        else:
+            return False
 
 
 app = Flask(__name__)
@@ -43,21 +53,16 @@ def receive_data():
 
     data = request.json
 
-
-#hello my name is Fatima and am the chief future civil servant
-
-#what other events
-
-
-
-    print(data)
-
     user_question = data.get("fm-question", "No question found")
 
     # Print the user's query
     print("User's Input:", user_question)
 
-    answer = openAI(user_question)
+    if check_for_english(user_question):
+        answer = "sorry I didnt catch that could you please repeat your question"
+
+    else:
+        answer = openAI(user_question)
 
     print(answer)
 
@@ -73,26 +78,20 @@ def receive_data():
     return jsonify(response_data), 200
 
 
+@app.route('/demo')
+def index():
+    return render_template("index.html")
 
-'''
-    response = openAI(user_query)
+@app.route('/demotest')
+def indexed():
+    return render_template("index1.txt")
 
-    print(response)
+@app.route('/image')
+def serve_image():
+    return send_from_directory('static', 'background.jpg')
 
-    respons = {
-        "fulfillmentMessages": [
-            {
-                "text": {
-                    "text": [response]
-                }
-            }
-        ]
-    }
-'''
-
-
-
-
+if __name__ == '__main__':
+    app.run(debug=True)
 
 if __name__ == '__main__':
     app.run(debug=True, port=5000)
